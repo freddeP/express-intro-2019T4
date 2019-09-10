@@ -22,6 +22,11 @@ app.post("/form",(req,res)=>{
 
 });
 
+app.get("/students",(req,res)=>{
+    res.setHeader("content-type", "application/json");
+    res.sendFile(__dirname+"/data.json");
+});
+
 app.get("/students/:name",(req,res)=>{
     fs.readFile(__dirname+"/data.json",(err,data)=>{
 
@@ -36,7 +41,50 @@ app.get("/students/:name",(req,res)=>{
     });
 });
 
+app.get("/students/update/:id/:age",(req,res)=>{
 
+    /**
+     * Läxa
+     * leta upp elev med :id från ovan
+     * uppdatera dess ålder med :age
+     * använd res.redirect("/students");
+     */
+    
+
+});
+
+app.get("/students/delete/:id",(req,res)=>{ 
+
+    fs.readFile("./data.json",(err, data)=>{
+
+        let currentData = JSON.parse(data.toString());
+/*      let rest =  currentData.
+     filter(student=> {
+         return student.id != parseInt(req.params.id)
+        }); */
+        let rest = [];
+        currentData.forEach(studentObject=>{
+
+            if(studentObject.id != parseInt(req.params.id))
+            {
+                rest.push(studentObject);
+            }
+    
+        });
+
+        require("./updateData")(rest);
+
+        res.send( rest);
+
+
+
+
+
+
+    });
+
+
+});
 
 app.listen(4600,()=>{
     console.log("app started");

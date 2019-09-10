@@ -13,6 +13,29 @@
         <input type="number" name="age" placeholder="Age">
         <input type="submit" value="Spara">
     </form>
+
+    <hr>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div id="search">
+        <input onkeyup = "search()" type="text" name="" id="elev" placeholder = "elevnamn">
+        <button >Sök elev</button>
+    </div>
     
+    <script>
+        function search(){
+            setTimeout(function(){
+                let elev = document.getElementById("elev").value;
+
+                window.location = "./students/"+elev;
+
+            },1000)
+      
+        }
+    
+    </script>
 </body>
 </html>
