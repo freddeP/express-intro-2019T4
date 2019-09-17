@@ -4,8 +4,12 @@ module.exports = function(app){
 
 
     app.get("/",(req,res)=>{ 
-        res.render("index",{title:"t4Express" ,header:"En rubrik till vår pug-sida"});
+        res.render("index",{title:"home" ,header:"En rubrik till vår pug-sida"});
     });
+    app.get("/about",(req,res)=>{ 
+        res.render("about",{title:"About" ,header:"About"});
+    });
+
     app.get("/secret/:secret/:secret2",secret.nr1,secret.nr2,(req,res)=>{
         res.send("You are inside secret stuff...");
      });

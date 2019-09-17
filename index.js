@@ -9,9 +9,7 @@ require("./modules/router")(app);
 // middleware för samtliga routes
 app.use(logger);
 app.use(express.urlencoded({extended:false}));
-
-app.set("views","./views");
+app.use(express.static(__dirname+"/public"));
 app.set("view engine","pug");
-
 
 app.listen(5200,()=>console.log("Port: 5200"));
